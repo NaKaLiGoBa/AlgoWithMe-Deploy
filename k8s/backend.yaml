@@ -17,10 +17,56 @@ spec:
           # 여러분의 backend image 주소를 입력해주세요.
           image: krmp-d2hub-idock.9rum.cc/dev-test/repo_d7c18a328113
           env:
-            - name: TZ
-              value: Asia/Seoul
-            - name: DATABASE_URL
-              value: jdbc:mariadb://mariadb:3306/krampoline
+            - name: DB_DRIVER_CLASS_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: driverClassName
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: url
+            - name: DB_USER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: username
+            - name: DB_USER_PW
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: password
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: secret
+            - name: JWT_VALID_TIME
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: expiredTime
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: smtp
+                  key: host
+            - name: SMTP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: smtp
+                  key: id
+            - name: SMTP_PW
+              valueFrom:
+                secretKeyRef:
+                  name: smtp
+                  key: pw
+            - name: CLAIM
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: claim
           resources:
             requests:
               memory: 1Gi
