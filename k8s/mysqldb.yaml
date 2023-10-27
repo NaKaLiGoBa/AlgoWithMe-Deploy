@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysqldb
+spec:
+  serviceName: mysqldb
+  selector:
+    matchLabels:
+      app: mysqldb
+  template:
+    metadata:
+      labels:
+        app: mysqldb
+    spec:
+      containers:
+        - name: mysqldb
+          # 여러분의 mysqldb image 주소를 입력해주세요.
+          image: mysql:8.0.2
+          env:
+            - name: TZ
+              value: Asia/Seoul
+            - name: MYSQLDB_ROOT_PASSWORD
+              value: root
+            - name: MYSQLDB_DATABASE
+              value: algo_with_me
+            - name: MYSQLDB_DISABLE_UPGRADE_BACKUP
+              value: '1'
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: data
+              subPath: mysql
+            - mountPath: /docker-entrypoint-initdb.d
+              name: init-db
+          resources:
+            limits:
+              memory: 1Gi
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+      volumes:
+        - name: init-db
+          configMap:
+            name: init-db
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysqldb
+spec:
+  type: ClusterIP
+  clusterIP: None # Headless
+  selector:
+    app: mysqldb
+  ports:
+    - port: 3306
