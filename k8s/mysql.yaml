@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysqldb
+  name: mysql
 spec:
-  serviceName: mysqldb
+  serviceName: mysql
   selector:
     matchLabels:
-      app: mysqldb
+      app: mysql
   template:
     metadata:
       labels:
-        app: mysqldb
+        app: mysql
     spec:
       containers:
-        - name: mysqldb
-          # 여러분의 mysqldb image 주소를 입력해주세요.
+        - name: mysql
+          # 여러분의 mysql image 주소를 입력해주세요.
           image: mysql:8.0.2
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: MYSQLDB_ROOT_PASSWORD
-              value: root
-            - name: MYSQLDB_DATABASE
+            - name: MYSQL_ROOT_PASSWORD
+              value: Root123$
+            - name: MYSQL_DATABASE
               value: algo_with_me
             - name: MYSQLDB_DISABLE_UPGRADE_BACKUP
               value: '1'
@@ -55,11 +55,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysqldb
+  name: mysql
 spec:
   type: ClusterIP
   clusterIP: None # Headless
   selector:
-    app: mysqldb
+    app: mysql
   ports:
     - port: 3306
