@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - name: backend
-          # 여러분의 backend image 주소를 입력해주세요.
           image: krmp-d2hub-idock.9rum.cc/dev-test/repo_d7c18a328113
           env:
             - name: DB_DRIVER_CLASS_NAME
@@ -75,6 +74,18 @@ spec:
               # 해당 /api 가 안  뚫려있으면 Ready 가 안되요.
               path: /api/test
               port: 8080
+          volumeMounts:
+            - mountPath: /code
+              name: code-space
+        - name: java11-runner
+          image: openjdk:11-jdk
+          command: ["tail", "-f", "/dev/null"]
+          volumeMounts:
+            - mountPath: /code
+              name: code-space
+      volumes:
+        - name: code-space
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
