@@ -71,11 +71,6 @@ spec:
                 secretKeyRef:
                   key: host
                   name: redis
-            - name: REDIS_PORT
-              valueFrom:
-                secretKeyRef:
-                  key: host
-                  name: redis
             - name: REDIS_AUTH_NUM_VALID_TIME
               valueFrom:
                 secretKeyRef:
