@@ -66,6 +66,36 @@ spec:
                 secretKeyRef:
                   name: jwt
                   key: claim
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: host
+                  name: redis
+            - name: REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: host
+                  name: redis
+            - name: REDIS_AUTH_NUM_VALID_TIME
+              valueFrom:
+                secretKeyRef:
+                  key: authNumValidTime
+                  name: redis
+            - name: KAKAO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: clientId
+                  name: kakao
+            - name: KAKAO_LOGIN_GRANT_TYPE
+              valueFrom:
+                secretKeyRef:
+                  key: loginGrantType
+                  name: kakao
+            - name: KAKAO_LOGIN_REDIRECT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: loginRedirectUrl
+                  name: kakao
           ports:
             - containerPort: 8080
           resources:
