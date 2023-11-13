@@ -21,7 +21,7 @@ spec:
             - name: TZ
               value: Asia/Seoul
             - name: MYSQL_ROOT_PASSWORD
-              value: Root123$
+              value: root
             - name: MYSQL_DATABASE
               value: algo_with_me
             - name: MYSQLDB_DISABLE_UPGRADE_BACKUP
