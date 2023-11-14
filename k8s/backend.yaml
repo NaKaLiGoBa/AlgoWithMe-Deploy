@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_26737bc5cc9e
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_3ac4e00adec7
           env:
             - name: DB_DRIVER_CLASS_NAME
               valueFrom:
