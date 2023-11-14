@@ -11,3 +11,6 @@ configMapGenerator:
   - name: init-db
     files:
       - configs/init.sql
+  - name: mysql-config
+    files:
+      - configs/conf.d

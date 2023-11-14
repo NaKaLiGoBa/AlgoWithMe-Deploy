@@ -29,7 +29,6 @@ CREATE TABLE `problems`
     `acceptance`  DECIMAL      NOT NULL,
     `created_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     `updated_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
-
 );
 
 DROP TABLE IF EXISTS `testcases`;
