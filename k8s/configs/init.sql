@@ -4,9 +4,7 @@ GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
 GRANT ALL ON algo_with_me.* TO 'root'@'%';
 FLUSH PRIVILEGES;
 
-DROP TABLE IF EXISTS `members` cascade;
-
-CREATE TABLE `members`
+CREATE TABLE IF NOT EXISTS `members`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `email`      VARCHAR(255) NOT NULL,
@@ -18,9 +16,7 @@ CREATE TABLE `members`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `problems` cascade;
-
-CREATE TABLE `problems`
+CREATE TABLE IF NOT EXISTS `problems`
 (
     `id`          BIGINT       NOT NULL AUTO_INCREMENT,
     `number`      BIGINT       NOT NULL,
@@ -33,9 +29,7 @@ CREATE TABLE `problems`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `testcases` cascade;
-
-CREATE TABLE `testcases`
+CREATE TABLE IF NOT EXISTS `testcases`
 (
     `id`           BIGINT       NOT NULL AUTO_INCREMENT,
     `problem_id`   BIGINT       NOT NULL,
@@ -49,9 +43,7 @@ CREATE TABLE `testcases`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `programming_languages` cascade;
-
-CREATE TABLE `programming_languages`
+CREATE TABLE IF NOT EXISTS `programming_languages`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `name`       VARCHAR(255) NOT NULL,
@@ -60,9 +52,7 @@ CREATE TABLE `programming_languages`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `tags` cascade;
-
-CREATE TABLE `tags`
+CREATE TABLE IF NOT EXISTS `tags`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `name`       VARCHAR(255) NOT NULL,
@@ -71,9 +61,7 @@ CREATE TABLE `tags`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `problem_tags` cascade;
-
-CREATE TABLE `problem_tags`
+CREATE TABLE IF NOT EXISTS `problem_tags`
 (
     `id`         BIGINT      NOT NULL AUTO_INCREMENT,
     `problem_id` BIGINT      NOT NULL,
@@ -83,9 +71,7 @@ CREATE TABLE `problem_tags`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `available_languages` cascade;
-
-CREATE TABLE `available_languages`
+CREATE TABLE IF NOT EXISTS `available_languages`
 (
     `id`                       BIGINT       NOT NULL AUTO_INCREMENT,
     `template_code`            VARCHAR(255) NOT NULL,
@@ -96,9 +82,7 @@ CREATE TABLE `available_languages`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `submits` cascade;
-
-CREATE TABLE `submits`
+CREATE TABLE IF NOT EXISTS `submits`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `problem_id` BIGINT       NOT NULL,
@@ -110,9 +94,7 @@ CREATE TABLE `submits`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `solutions` cascade;
-
-CREATE TABLE `solutions`
+CREATE TABLE IF NOT EXISTS `solutions`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `member_id`  BIGINT       NOT NULL,
@@ -125,9 +107,7 @@ CREATE TABLE `solutions`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `solution_languages` cascade;
-
-CREATE TABLE `solution_languages`
+CREATE TABLE IF NOT EXISTS `solution_languages`
 (
     `id`                       BIGINT      NOT NULL AUTO_INCREMENT,
     `solution_id`              BIGINT      NOT NULL,
@@ -137,9 +117,7 @@ CREATE TABLE `solution_languages`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `comments` cascade;
-
-CREATE TABLE `comments`
+CREATE TABLE IF NOT EXISTS `comments`
 (
     `id`          BIGINT       NOT NULL AUTO_INCREMENT,
     `member_id`   BIGINT       NOT NULL,
@@ -150,9 +128,7 @@ CREATE TABLE `comments`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `replies` cascade;
-
-CREATE TABLE `replies`
+CREATE TABLE IF NOT EXISTS `replies`
 (
     `id`         BIGINT      NOT NULL AUTO_INCREMENT,
     `member_id`  BIGINT      NOT NULL,
@@ -163,9 +139,7 @@ CREATE TABLE `replies`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `solution_likes` cascade;
-
-CREATE TABLE `solution_likes`
+CREATE TABLE IF NOT EXISTS `solution_likes`
 (
     `id`          BIGINT      NOT NULL AUTO_INCREMENT,
     `member_id`   BIGINT      NOT NULL,
@@ -175,9 +149,7 @@ CREATE TABLE `solution_likes`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `comment_likes` cascade;
-
-CREATE TABLE `comment_likes`
+CREATE TABLE IF NOT EXISTS `comment_likes`
 (
     `id`         BIGINT      NOT NULL AUTO_INCREMENT,
     `member_id`  BIGINT      NOT NULL,
@@ -187,9 +159,7 @@ CREATE TABLE `comment_likes`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `reply_likes` cascade;
-
-CREATE TABLE `reply_likes`
+CREATE TABLE IF NOT EXISTS `reply_likes`
 (
     `id`         BIGINT      NOT NULL AUTO_INCREMENT,
     `reply_id`   BIGINT      NOT NULL,
@@ -199,9 +169,7 @@ CREATE TABLE `reply_likes`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `mini_quizzes` cascade;
-
-CREATE TABLE `mini_quizzes`
+CREATE TABLE IF NOT EXISTS `mini_quizzes`
 (
     `id`               BIGINT       NOT NULL AUTO_INCREMENT,
     `description`      VARCHAR(255) NOT NULL,
@@ -215,9 +183,7 @@ CREATE TABLE `mini_quizzes`
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `mini_quiz_tags` cascade;
-
-CREATE TABLE `mini_quiz_tags`
+CREATE TABLE IF NOT EXISTS `mini_quiz_tags`
 (
     `id`           BIGINT      NOT NULL AUTO_INCREMENT,
     `tag_id`       BIGINT      NOT NULL,
