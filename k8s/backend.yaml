@@ -16,26 +16,6 @@ spec:
         - name: backend
           image: krmp-d2hub-idock.9rum.cc/dev-test/repo_3ac4e00adec7
           env:
-            - name: DB_DRIVER_CLASS_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: db
-                  key: driverClassName
-            - name: DB_URL
-              valueFrom:
-                secretKeyRef:
-                  name: db
-                  key: url
-            - name: DB_USER_ID
-              valueFrom:
-                secretKeyRef:
-                  name: db
-                  key: username
-            - name: DB_USER_PW
-              valueFrom:
-                secretKeyRef:
-                  name: db
-                  key: password
             - name: JWT_SECRET_KEY
               valueFrom:
                 secretKeyRef:
@@ -46,6 +26,11 @@ spec:
                 secretKeyRef:
                   name: jwt
                   key: expiredTime
+            - name: CLAIM
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: claim
             - name: SMTP_HOST
               valueFrom:
                 secretKeyRef:
@@ -61,21 +46,6 @@ spec:
                 secretKeyRef:
                   name: smtp
                   key: pw
-            - name: CLAIM
-              valueFrom:
-                secretKeyRef:
-                  name: jwt
-                  key: claim
-            - name: REDIS_HOST
-              valueFrom:
-                secretKeyRef:
-                  key: host
-                  name: redis
-            - name: REDIS_AUTH_NUM_VALID_TIME
-              valueFrom:
-                secretKeyRef:
-                  key: authNumValidTime
-                  name: redis
             - name: KAKAO_CLIENT_ID
               valueFrom:
                 secretKeyRef:
