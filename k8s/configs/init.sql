@@ -4,7 +4,7 @@ GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'root' WITH GRANT OPTION;
 GRANT ALL ON algo_with_me.* TO 'root'@'localhost';
 FLUSH PRIVILEGES;
 
-DROP TABLE IF EXISTS `members`;
+DROP TABLE IF EXISTS `members` cascade;
 
 CREATE TABLE `members`
 (
@@ -14,24 +14,26 @@ CREATE TABLE `members`
     `nickname`   VARCHAR(255) NOT NULL,
     `role`       VARCHAR(255) NOT NULL,
     `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `problems`;
+DROP TABLE IF EXISTS `problems` cascade;
 
 CREATE TABLE `problems`
 (
     `id`          BIGINT       NOT NULL AUTO_INCREMENT,
     `number`      BIGINT       NOT NULL,
-    `description` VARCHAR(255) NOT NULL,
+    `description` TEXT         NOT NULL,
     `title`       VARCHAR(255) NOT NULL,
     `difficulty`  VARCHAR(255) NOT NULL,
     `acceptance`  DECIMAL      NOT NULL,
     `created_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `testcases`;
+DROP TABLE IF EXISTS `testcases` cascade;
 
 CREATE TABLE `testcases`
 (
@@ -43,30 +45,33 @@ CREATE TABLE `testcases`
     `output`       VARCHAR(255) NOT NULL,
     `isGrading`    BOOLEAN      NOT NULL,
     `created_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `programming_languages`;
+DROP TABLE IF EXISTS `programming_languages` cascade;
 
 CREATE TABLE `programming_languages`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `name`       VARCHAR(255) NOT NULL,
     `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `tags` cascade;
 
 CREATE TABLE `tags`
 (
     `id`         BIGINT       NOT NULL AUTO_INCREMENT,
     `name`       VARCHAR(255) NOT NULL,
     `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `problem_tags`;
+DROP TABLE IF EXISTS `problem_tags` cascade;
 
 CREATE TABLE `problem_tags`
 (
@@ -74,10 +79,11 @@ CREATE TABLE `problem_tags`
     `problem_id` BIGINT      NOT NULL,
     `tag_id`     BIGINT      NOT NULL,
     `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `available_languages`;
+DROP TABLE IF EXISTS `available_languages` cascade;
 
 CREATE TABLE `available_languages`
 (
@@ -86,10 +92,11 @@ CREATE TABLE `available_languages`
     `programming_languages_id` BIGINT       NOT NULL,
     `problem_id`               BIGINT       NOT NULL,
     `created_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `submits`;
+DROP TABLE IF EXISTS `submits` cascade;
 
 CREATE TABLE `submits`
 (
@@ -99,10 +106,11 @@ CREATE TABLE `submits`
     `code`       TEXT         NOT NULL,
     `result`     VARCHAR(255) NOT NULL,
     `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `solutions`;
+DROP TABLE IF EXISTS `solutions` cascade;
 
 CREATE TABLE `solutions`
 (
@@ -110,13 +118,14 @@ CREATE TABLE `solutions`
     `member_id`  BIGINT       NOT NULL,
     `problem_id` BIGINT       NOT NULL,
     `title`      VARCHAR(255) NOT NULL,
-    `content`    VARCHAR(255) NOT NULL,
+    `content`    TEXT         NOT NULL,
     `view_count` BIGINT       NOT NULL,
     `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `solution_languages`;
+DROP TABLE IF EXISTS `solution_languages` cascade;
 
 CREATE TABLE `solution_languages`
 (
@@ -124,10 +133,11 @@ CREATE TABLE `solution_languages`
     `solution_id`              BIGINT      NOT NULL,
     `programming_languages_id` BIGINT      NOT NULL,
     `created_at`               DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`               DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`               DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `comments`;
+DROP TABLE IF EXISTS `comments` cascade;
 
 CREATE TABLE `comments`
 (
@@ -136,10 +146,11 @@ CREATE TABLE `comments`
     `solution_id` BIGINT       NOT NULL,
     `content`     VARCHAR(255) NOT NULL,
     `created_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`  DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `replies`;
+DROP TABLE IF EXISTS `replies` cascade;
 
 CREATE TABLE `replies`
 (
@@ -148,10 +159,11 @@ CREATE TABLE `replies`
     `comment_id` BIGINT      NOT NULL,
     `content`    BIGINT      NOT NULL,
     `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `solution_likes`;
+DROP TABLE IF EXISTS `solution_likes` cascade;
 
 CREATE TABLE `solution_likes`
 (
@@ -159,10 +171,11 @@ CREATE TABLE `solution_likes`
     `member_id`   BIGINT      NOT NULL,
     `solution_id` BIGINT      NOT NULL,
     `created_at`  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `comment_likes`;
+DROP TABLE IF EXISTS `comment_likes` cascade;
 
 CREATE TABLE `comment_likes`
 (
@@ -170,10 +183,11 @@ CREATE TABLE `comment_likes`
     `member_id`  BIGINT      NOT NULL,
     `comment_id` BIGINT      NOT NULL,
     `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `reply_likes`;
+DROP TABLE IF EXISTS `reply_likes` cascade;
 
 CREATE TABLE `reply_likes`
 (
@@ -181,25 +195,27 @@ CREATE TABLE `reply_likes`
     `reply_id`   BIGINT      NOT NULL,
     `member_id`  BIGINT      NOT NULL,
     `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `mini_quizzes`;
+DROP TABLE IF EXISTS `mini_quizzes` cascade;
 
 CREATE TABLE `mini_quizzes`
 (
     `id`               BIGINT       NOT NULL AUTO_INCREMENT,
     `description`      VARCHAR(255) NOT NULL,
     `explain`          VARCHAR(255) NOT NULL,
-    `answer`           VARCHAR(255) NOT NULL,
+    `answer`           TEXT         NOT NULL,
     `type`             VARCHAR(255) NOT NULL,
     `difficulty`       VARCHAR(255) NOT NULL,
     `choiceOrInitials` VARCHAR(255) NOT NULL,
     `created_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS `mini_quiz_tags`;
+DROP TABLE IF EXISTS `mini_quiz_tags` cascade;
 
 CREATE TABLE `mini_quiz_tags`
 (
@@ -207,94 +223,9 @@ CREATE TABLE `mini_quiz_tags`
     `tag_id`       BIGINT      NOT NULL,
     `mini_quiz_id` BIGINT      NOT NULL,
     `created_at`   DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`   DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    `updated_at`   DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    PRIMARY KEY (id)
 );
-
-ALTER TABLE `members`
-    ADD CONSTRAINT `PK_MEMBERS` PRIMARY KEY (
-                                             `id`
-        );
-
-ALTER TABLE `problems`
-    ADD CONSTRAINT `PK_PROBLEMS` PRIMARY KEY (
-                                              `id`
-        );
-
-ALTER TABLE `testcases`
-    ADD CONSTRAINT `PK_TESTCASES` PRIMARY KEY (
-                                               `id`,
-                                               `problem_id`
-        );
-
-ALTER TABLE `programming_languages`
-    ADD CONSTRAINT `PK_PROGRAMMING_LANGUAGES` PRIMARY KEY (
-                                                           `id`
-        );
-
-ALTER TABLE `tags`
-    ADD CONSTRAINT `PK_TAGS` PRIMARY KEY (
-                                          `id`
-        );
-
-ALTER TABLE `problem_tags`
-    ADD CONSTRAINT `PK_PROBLEM_TAGS` PRIMARY KEY (
-                                                  `id`
-        );
-
-ALTER TABLE `available_languages`
-    ADD CONSTRAINT `PK_AVAILABLE_LANGUAGES` PRIMARY KEY (
-                                                         `id`
-        );
-
-ALTER TABLE `submits`
-    ADD CONSTRAINT `PK_SUBMITS` PRIMARY KEY (
-                                             `id`
-        );
-
-ALTER TABLE `solutions`
-    ADD CONSTRAINT `PK_SOLUTIONS` PRIMARY KEY (
-                                               `id`
-        );
-
-ALTER TABLE `solution_languages`
-    ADD CONSTRAINT `PK_SOLUTION_LANGUAGES` PRIMARY KEY (
-                                                        `id`
-        );
-
-ALTER TABLE `comments`
-    ADD CONSTRAINT `PK_COMMENTS` PRIMARY KEY (
-                                              `id`
-        );
-
-ALTER TABLE `replies`
-    ADD CONSTRAINT `PK_REPLIES` PRIMARY KEY (
-                                             `id`
-        );
-
-ALTER TABLE `solution_likes`
-    ADD CONSTRAINT `PK_SOLUTION_LIKES` PRIMARY KEY (
-                                                    `id`
-        );
-
-ALTER TABLE `comment_likes`
-    ADD CONSTRAINT `PK_COMMENT_LIKES` PRIMARY KEY (
-                                                   `id`
-        );
-
-ALTER TABLE `reply_likes`
-    ADD CONSTRAINT `PK_REPLY_LIKES` PRIMARY KEY (
-                                                 `id`
-        );
-
-ALTER TABLE `mini_quizzes`
-    ADD CONSTRAINT `PK_MINI_QUIZZES` PRIMARY KEY (
-                                                  `id`
-        );
-
-ALTER TABLE `mini_quiz_tags`
-    ADD CONSTRAINT `PK_MINI_QUIZ_TAGS` PRIMARY KEY (
-                                                    `id`
-        );
 
 ALTER TABLE `testcases`
     ADD CONSTRAINT `FK_problems_TO_testcases_1` FOREIGN KEY (
@@ -1028,69 +959,78 @@ VALUES (1, 1, 'nums tar', '[1,1,1,1,1] 3', '5', false),
 
 # 미니퀴즈
 INSERT INTO `mini_quizzes`
-    (id, description, `explain`, choiceOrInitials, type, difficulty, answer)
-VALUES
-    (1, 'BFS의 결과는 트리이다.', '비순환 구조를 갖는다.', '', 'OX', 'EASY', 'O'),
-    (2, '초성에 맞는 단어를 채워주세요.', '', 'ㄱ,ㅇ,ㅇ,ㅅ,ㅌ,ㅅ', 'INITIAL', 'MEDIUM', '깊이우선탐색'),
-    (3, '깊이우선탐색은?', 'BandWith First Search', 'BFS,DFS,MST,BitMask', 'CHOICE', 'HARD', '2'),
-    (4, 'BFS는 큐(Queue) 자료구조를 사용하여 구현된다.', '', '', 'OX', 'EASY', ''),
-    (5, '초성에 맞는 단어를 채워주세요.', 'BFS는 큐를 사용하여 구현되며, 가장 가까운 노드부터 탐색을 시작하여 너비 우선으로 탐색합니다.', '', 'INITIAL', 'MEDIUM', 'O'),
-    (6, '너비우선탐색은?', 'BandWith First Search', 'BFS,DFS,MST,BitMask', 'CHOICE', 'HARD', '1'),
-    (7, '백트래킹은 항상 최적해를 찾을 수 있다.', '항상 최적해를 찾을 수 있는 것은 아니며 이 때 다른 방식을 사용해 최적해를 찾을 수 있습니다.', '', 'OX', 'EASY', 'X'),
-    (8, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
-    (9, '백트래킹 알고리즘의 주요 특징은 무엇입니까?', '백트래킹 알고리즘의 핵심 특징은 해결책을 찾는 과정에서 해가 될 수 없다고 판단되는 지점에서 이전 단계로 ''되돌아가는(Backtrack)'' 것입니다. 이 방법은 브루트 포스 접근법을 개선한 것으로, 불필요한 계산을 줄여 효율성을 높입니다.', '모든 가능성을 시도,최적의 해 보장,경로 되돌아가기,데이터 정렬 필요', 'CHOICE', 'HARD', '3'),
-    (10, '동적 프로그래밍은 작은 부분 문제의 최적해를 이용하여 전체 문제의 최적해를 구하는 알고리즘 패러다임이다.', '동적 프로그래밍은 큰 문제를 작은 부분 문제로 분할하고, 각 부분 문제의 최적해를 저장하여 중복 계산을 피하며 해결하는 방법입니다.', '', 'OX', 'EASY', 'X'),
-    (11, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
-    (12, '다이나믹 프로그래밍의 기본 원리는 무엇입니까?', '', '모든 가능한 해를 순차적으로 탐색,큰 문제를 작은 문제로 나누고 이를 재사용,빠른 실행을 위해 병렬 처리 사용,모든 데이터를 정렬 후 순차적으로 처리', 'CHOICE', 'HARD', '2'),
-    (13, '시뮬레이션은 실제 상황을 모방하여 문제를 해결하는 기법이다.', '', '', 'OX', 'EASY', ''),
-    (14, '초성에 맞는 단어를 채워주세요.', '시뮬레이션은 실제 상황을 모방하여 시스템 또는 알고리즘을 테스트하거나 문제를 해결하는 데 사용되는 기법입니다.', '', 'INITIAL', 'MEDIUM', 'O'),
-    (15, '시뮬레이션 알고리즘에서 가장 중요한 요소는 무엇입니까?', '', '데이터 정렬,실제 상황 모델링,최단 경로 찾기,대규모 데이터 처리', 'CHOICE', 'HARD', '2'),
-    (16, '그래프(Graph)는 항상 사이클을 포함한다.', '그래프는 항상 사이클을 포함하지는 않으며, 비순환 그래프도 존재합니다.', '', 'OX', 'EASY', 'X'),
-    (18, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
-    (18, '그래프 알고리즘에서 ''노드''는 주로 무엇을 나타냅니까?', '', '데이터정렬방식,실행시간,그래프의 정점,메모리 사용량', 'CHOICE', 'HARD', '3'),
-    (19, '병합 정렬(Merge Sort)은 항상 O(n^2)의 시간 복잡도를 가진다.', '병합 정렬의 시간 복잡도는 항상 O(n log n)입니다. O(n^2)가 아닙니다.', '', 'OX', 'EASY', 'X'),
-    (20, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
-    (21, '정렬 알고리즘의 주요 목적은 무엇입니까?', '데이터를 빠르게 검색,데이터를 특정 순서대로 배열,메모리 최적화,병렬 처리', '', 'CHOICE', 'HARD', '2'),
-    (22, '이진 탐색 트리(Binary Search Tree)에서 중복된 값을 가진 노드를 허용하지 않는다.', '이진 탐색 트리에서 중복된 값을 가진 노드를 허용하지 않고, 동일한 값은 하나의 노드에 저장됩니다.', '', 'OX', 'EASY', 'O'),
-    (23, '초성에 맞는 단어를 채워주세요.', '그리디 알고리즘은 현재 상황에서 가장 좋은 선택을 하는 방식으로 동작하며, 항상 최적해를 보장하지는 않을 수 있습니다.', '', 'INITIAL', 'MEDIUM', 'X'),
-    (24, '트리 구조에서 ''루트 노드''는 무엇을 의미합니까?', '', '트리의 가장 깊은 노드,트리의 가장 상단에 위치한 노드,트리의 가장 낮은 레벨의 노드,트리의 가장 많은 자식을 가진 노드', 'CHOICE', 'HARD', ''),
-    (25, '그리디 알고리즘은 항상 최적해를 보장한다.', '', '', 'OX', 'EASY', ''),
-    (26, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
-    (27, '탐욕 알고리즘의 주요 특징은 무엇입니까?', '', '모든 가능한 해를 탐색,현재 상황에서 최선의 선택만을 취함,실행시간이 매우 길다', 'CHOICE', 'HARD', '2'),
-    (28, '다익스트라 알고리즘(Dijkstra''s Algorithm)은 음의 가중치를 가진 그래프에서도 동작한다.', '다익스트라 알고리즘은 음의 가중치를 가진 그래프에서는 정확한 결과를 제공하지 않습니다. 가중치는 음이 아닌 값이어야 합니다.', '', 'OX', 'EASY', 'X'),
-    (29, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
-    (30, '다익스트라 알고리즘은 주로 어떤 문제를 해결하기 위해 사용됩니까?', '', '데이터 정렬,빠른 검색,최단 경로 찾기,대규모 데이터 처리', 'CHOICE', 'HARD', '3');
+(id, description, `explain`, choiceOrInitials, type, difficulty, answer)
+VALUES (1, 'BFS의 결과는 트리이다.', '비순환 구조를 갖는다.', '', 'OX', 'EASY', 'O'),
+       (2, '초성에 맞는 단어를 채워주세요.', '', 'ㄱ,ㅇ,ㅇ,ㅅ,ㅌ,ㅅ', 'INITIAL', 'MEDIUM', '깊이우선탐색'),
+       (3, '깊이우선탐색은?', 'BandWith First Search', 'BFS,DFS,MST,BitMask', 'CHOICE', 'HARD', '2'),
+       (4, 'BFS는 큐(Queue) 자료구조를 사용하여 구현된다.', '', '', 'OX', 'EASY', 'O'),
+       (5, '초성에 맞는 단어를 채워주세요.', 'BFS는 큐를 사용하여 구현되며, 가장 가까운 노드부터 탐색을 시작하여 너비 우선으로 탐색합니다.', '', 'INITIAL', 'MEDIUM', 'O'),
+       (6, '너비우선탐색은?', 'BandWith First Search', 'BFS,DFS,MST,BitMask', 'CHOICE', 'HARD', '1'),
+       (7, '백트래킹은 항상 최적해를 찾을 수 있다.', '항상 최적해를 찾을 수 있는 것은 아니며 이 때 다른 방식을 사용해 최적해를 찾을 수 있습니다.', '', 'OX', 'EASY', 'X'),
+       (8, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
+       (9, '백트래킹 알고리즘의 주요 특징은 무엇입니까?',
+        '백트래킹 알고리즘의 핵심 특징은 해결책을 찾는 과정에서 해가 될 수 없다고 판단되는 지점에서 이전 단계로 ''되돌아가는(Backtrack)'' 것입니다. 이 방법은 브루트 포스 접근법을 개선한 것으로, 불필요한 계산을 줄여 효율성을 높입니다.',
+        '모든 가능성을 시도,최적의 해 보장,경로 되돌아가기,데이터 정렬 필요', 'CHOICE', 'HARD', '3'),
+       (10, '동적 프로그래밍은 작은 부분 문제의 최적해를 이용하여 전체 문제의 최적해를 구하는 알고리즘 패러다임이다.',
+        '동적 프로그래밍은 큰 문제를 작은 부분 문제로 분할하고, 각 부분 문제의 최적해를 저장하여 중복 계산을 피하며 해결하는 방법입니다.', '', 'OX', 'EASY', 'X'),
+       (11, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
+       (12, '다이나믹 프로그래밍의 기본 원리는 무엇입니까?', '',
+        '모든 가능한 해를 순차적으로 탐색,큰 문제를 작은 문제로 나누고 이를 재사용,빠른 실행을 위해 병렬 처리 사용,모든 데이터를 정렬 후 순차적으로 처리', 'CHOICE', 'HARD', '2'),
+       (13, '시뮬레이션은 실제 상황을 모방하여 문제를 해결하는 기법이다.', '', '', 'OX', 'EASY', ''),
+       (14, '초성에 맞는 단어를 채워주세요.', '시뮬레이션은 실제 상황을 모방하여 시스템 또는 알고리즘을 테스트하거나 문제를 해결하는 데 사용되는 기법입니다.', '', 'INITIAL',
+        'MEDIUM', 'O'),
+       (15, '시뮬레이션 알고리즘에서 가장 중요한 요소는 무엇입니까?', '', '데이터 정렬,실제 상황 모델링,최단 경로 찾기,대규모 데이터 처리', 'CHOICE', 'HARD', '2'),
+       (16, '그래프(Graph)는 항상 사이클을 포함한다.', '그래프는 항상 사이클을 포함하지는 않으며, 비순환 그래프도 존재합니다.', '', 'OX', 'EASY', 'X'),
+       (17, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
+       (18, '그래프 알고리즘에서 ''노드''는 주로 무엇을 나타냅니까?', '', '데이터정렬방식,실행시간,그래프의 정점,메모리 사용량', 'CHOICE', 'HARD', '3'),
+       (19, '병합 정렬(Merge Sort)은 항상 O(n^2)의 시간 복잡도를 가진다.', '병합 정렬의 시간 복잡도는 항상 O(n log n)입니다. O(n^2)가 아닙니다.', '', 'OX',
+        'EASY', 'X'),
+       (20, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
+       (21, '정렬 알고리즘의 주요 목적은 무엇입니까?', '데이터를 빠르게 검색,데이터를 특정 순서대로 배열,메모리 최적화,병렬 처리', '', 'CHOICE', 'HARD', '2'),
+       (22, '이진 탐색 트리(Binary Search Tree)에서 중복된 값을 가진 노드를 허용하지 않는다.',
+        '이진 탐색 트리에서 중복된 값을 가진 노드를 허용하지 않고, 동일한 값은 하나의 노드에 저장됩니다.', '', 'OX', 'EASY', 'O'),
+       (23, '초성에 맞는 단어를 채워주세요.', '그리디 알고리즘은 현재 상황에서 가장 좋은 선택을 하는 방식으로 동작하며, 항상 최적해를 보장하지는 않을 수 있습니다.', '', 'INITIAL',
+        'MEDIUM', 'X'),
+       (24, '트리 구조에서 ''루트 노드''는 무엇을 의미합니까?', '', '트리의 가장 깊은 노드,트리의 가장 상단에 위치한 노드,트리의 가장 낮은 레벨의 노드,트리의 가장 많은 자식을 가진 노드',
+        'CHOICE', 'HARD', ''),
+       (25, '그리디 알고리즘은 항상 최적해를 보장한다.', '', '', 'OX', 'EASY', ''),
+       (26, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
+       (27, '탐욕 알고리즘의 주요 특징은 무엇입니까?', '', '모든 가능한 해를 탐색,현재 상황에서 최선의 선택만을 취함,실행시간이 매우 길다', 'CHOICE', 'HARD', '2'),
+       (28, '다익스트라 알고리즘(Dijkstra''s Algorithm)은 음의 가중치를 가진 그래프에서도 동작한다.',
+        '다익스트라 알고리즘은 음의 가중치를 가진 그래프에서는 정확한 결과를 제공하지 않습니다. 가중치는 음이 아닌 값이어야 합니다.', '', 'OX', 'EASY', 'X'),
+       (29, '초성에 맞는 단어를 채워주세요.', '', '', 'INITIAL', 'MEDIUM', ''),
+       (30, '다익스트라 알고리즘은 주로 어떤 문제를 해결하기 위해 사용됩니까?', '', '데이터 정렬,빠른 검색,최단 경로 찾기,대규모 데이터 처리', 'CHOICE', 'HARD', '3');
 
 # 미니퀴즈 태그
 INSERT INTO `mini_quiz_tags`
     (mini_quiz_id, tag_id)
-VALUES (1,1),
-       (2,1),
-       (3,1),
-       (4,2),
-       (5,2),
-       (6,2),
-       (7,3),
-       (8,3),
-       (9,3),
-       (10,4),
-       (11,4),
-       (12,4),
-       (13,5),
-       (14,5),
-       (15,5),
-       (16,6),
-       (17,6),
-       (18,6),
-       (19,7),
-       (20,7),
-       (21,7),
-       (22,8),
-       (23,8),
-       (24,8),
-       (25,9),
-       (26,9),
-       (27,9),
-       (28,10),
-       (29,10),
-       (30,10);
+VALUES (1, 1),
+       (2, 1),
+       (3, 1),
+       (4, 2),
+       (5, 2),
+       (6, 2),
+       (7, 3),
+       (8, 3),
+       (9, 3),
+       (10, 4),
+       (11, 4),
+       (12, 4),
+       (13, 5),
+       (14, 5),
+       (15, 5),
+       (16, 6),
+       (17, 6),
+       (18, 6),
+       (19, 7),
+       (20, 7),
+       (21, 7),
+       (22, 8),
+       (23, 8),
+       (24, 8),
+       (25, 9),
+       (26, 9),
+       (27, 9),
+       (28, 10),
+       (29, 10),
+       (30, 10);
