@@ -11,6 +11,3 @@ configMapGenerator:
   - name: init-db
     files:
       - configs/init.sql
-  - name: init-db
-    files:
-      - configs/conf.d
