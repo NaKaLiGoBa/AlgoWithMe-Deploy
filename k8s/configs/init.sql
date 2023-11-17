@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `testcases`
     `input_names`  VARCHAR(255) NOT NULL,
     `input_values` VARCHAR(255) NOT NULL,
     `output`       VARCHAR(255) NOT NULL,
-    `is_grading`    BOOLEAN      NOT NULL,
+    `is_grading`   BOOLEAN      NOT NULL,
     `created_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     `updated_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
@@ -73,12 +73,12 @@ CREATE TABLE IF NOT EXISTS `problem_tags`
 
 CREATE TABLE IF NOT EXISTS `available_languages`
 (
-    `id`                       BIGINT       NOT NULL AUTO_INCREMENT,
-    `template_code`            VARCHAR(255) NOT NULL,
+    `id`                      BIGINT       NOT NULL AUTO_INCREMENT,
+    `template_code`           VARCHAR(255) NOT NULL,
     `programming_language_id` BIGINT       NOT NULL,
-    `problem_id`               BIGINT       NOT NULL,
-    `created_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `problem_id`              BIGINT       NOT NULL,
+    `created_at`              DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at`              DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
@@ -109,11 +109,11 @@ CREATE TABLE IF NOT EXISTS `solutions`
 
 CREATE TABLE IF NOT EXISTS `solution_languages`
 (
-    `id`                       BIGINT      NOT NULL AUTO_INCREMENT,
-    `solution_id`              BIGINT      NOT NULL,
-    `programming_languages_id` BIGINT      NOT NULL,
-    `created_at`               DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`               DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `id`                      BIGINT      NOT NULL AUTO_INCREMENT,
+    `solution_id`             BIGINT      NOT NULL,
+    `programming_language_id` BIGINT      NOT NULL,
+    `created_at`              DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at`              DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
@@ -219,7 +219,7 @@ ALTER TABLE `problem_tags`
 
 ALTER TABLE `available_languages`
     ADD CONSTRAINT `FK_programming_languages_TO_available_languages_1` FOREIGN KEY (
-                                                                                    `programming_languages_id`
+                                                                                    `programming_language_id`
         )
         REFERENCES `programming_languages` (
                                             `id`
@@ -275,7 +275,7 @@ ALTER TABLE `solution_languages`
 
 ALTER TABLE `solution_languages`
     ADD CONSTRAINT `FK_available_languages_TO_solution_languages_1` FOREIGN KEY (
-                                                                                 `programming_languages_id`
+                                                                                 programming_language_id
         )
         REFERENCES `available_languages` (
                                           `id`
@@ -849,7 +849,7 @@ VALUES (1, 1),
 
 # 풀이 가능한 언어
 INSERT INTO `available_languages`
-    (template_code, programming_languages_id, problem_id)
+    (template_code, programming_language_id, problem_id)
 VALUES ('', 1, 1),
        ('', 1, 2),
        ('', 1, 3),
@@ -873,7 +873,7 @@ VALUES ('', 1, 1),
 
 # 테스트케이스
 INSERT INTO `testcases`
-    (problem_id, number, input_names, input_values, output, isGrading)
+    (problem_id, number, input_names, input_values, output, is_grading)
 VALUES (1, 1, 'nums tar', '[1,1,1,1,1] 3', '5', false),
        (1, 2, 'nums tar', '[4,1,2,1] 4', '2', false),
        (1, 1, 'nums tar', '[1,2,1,2] 2', '3', true),
