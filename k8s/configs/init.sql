@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `testcases`
     `input_names`  VARCHAR(255) NOT NULL,
     `input_values` VARCHAR(255) NOT NULL,
     `output`       VARCHAR(255) NOT NULL,
-    `isGrading`    BOOLEAN      NOT NULL,
+    `is_grading`    BOOLEAN      NOT NULL,
     `created_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     `updated_at`   DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
@@ -381,11 +381,11 @@ ALTER TABLE `mini_quiz_tags`
 START TRANSACTION;
 
 # admin, 테스트 계정
-INSERT INTO `members`
-    (email, password, nickname, role)
-VALUES ('admin@admin.com', 'admin', 'admin', 'ROLE_ADMIN'),
-       ('user1@user1.com', 'user1', 'user1', 'ROLE_USER'),
-       ('user2@user2.com', 'user2', 'user2', 'ROLE_USER');
+# INSERT INTO `members`
+#     (email, password, nickname, role)
+# VALUES ('admin@admin.com', 'admin', 'admin', 'ROLE_ADMIN'),
+#        ('user1@user1.com', 'user1', 'user1', 'ROLE_USER'),
+#        ('user2@user2.com', 'user2', 'user2', 'ROLE_USER');
 
 # 문제 태그
 INSERT INTO `tags`
