@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `available_languages`
 (
     `id`                       BIGINT       NOT NULL AUTO_INCREMENT,
     `template_code`            VARCHAR(255) NOT NULL,
-    `programming_languages_id` BIGINT       NOT NULL,
+    `programming_language_id` BIGINT       NOT NULL,
     `problem_id`               BIGINT       NOT NULL,
     `created_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     `updated_at`               DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
