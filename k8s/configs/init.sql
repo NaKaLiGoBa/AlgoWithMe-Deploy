@@ -1,8 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS `algo_with_me` DEFAULT CHARACTER SET utf8mb4;
 
-GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
-GRANT ALL ON algo_with_me.* TO 'root'@'%';
-FLUSH PRIVILEGES;
+# GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+# GRANT ALL ON algo_with_me.* TO 'root'@'%';
+# FLUSH PRIVILEGES;
 
 CREATE TABLE IF NOT EXISTS `members`
 (
