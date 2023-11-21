@@ -109,11 +109,11 @@ CREATE TABLE IF NOT EXISTS `solutions`
 
 CREATE TABLE IF NOT EXISTS `solution_languages`
 (
-    `id`                      BIGINT      NOT NULL AUTO_INCREMENT,
-    `solution_id`             BIGINT      NOT NULL,
-    `programming_language_id` BIGINT      NOT NULL,
-    `created_at`              DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`              DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `id`                    BIGINT      NOT NULL AUTO_INCREMENT,
+    `solution_id`           BIGINT      NOT NULL,
+    `available_language_id` BIGINT      NOT NULL,
+    `created_at`            DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at`            DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
@@ -200,14 +200,18 @@ CREATE TABLE IF NOT EXISTS `answers`
     `answer`     VARCHAR(255) NOT NULL,
     `member_id`  BIGINT       NOT NULL,
     `problem_id` BIGINT       NOT NULL,
+    `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS `solution_views`
 (
-    `id`          BIGINT NOT NULL AUTO_INCREMENT,
-    `member_id`   BIGINT NOT NULL,
-    `solution_id` BIGINT NOT NULL,
+    `id`          BIGINT      NOT NULL AUTO_INCREMENT,
+    `member_id`   BIGINT      NOT NULL,
+    `solution_id` BIGINT      NOT NULL,
+    `created_at`  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at`  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
@@ -284,20 +288,12 @@ ALTER TABLE `solutions`
             );
 
 ALTER TABLE `solution_languages`
-    ADD CONSTRAINT `FK_solutions_TO_solution_languages_1` FOREIGN KEY (
-                                                                       `solution_id`
-        )
-        REFERENCES `solutions` (
-                                `id`
-            );
+    ADD CONSTRAINT `FK_solutions_TO_solution_languages_1` FOREIGN KEY (`solution_id`)
+        REFERENCES `solutions` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `solution_languages`
-    ADD CONSTRAINT `FK_available_languages_TO_solution_languages_1` FOREIGN KEY (
-                                                                                 programming_language_id
-        )
-        REFERENCES `available_languages` (
-                                          `id`
-            );
+    ADD CONSTRAINT `FK_available_languages_TO_solution_languages_2` FOREIGN KEY (available_language_id)
+        REFERENCES `available_languages` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `comments`
     ADD CONSTRAINT `FK_members_TO_comments_1` FOREIGN KEY (
@@ -308,12 +304,8 @@ ALTER TABLE `comments`
             );
 
 ALTER TABLE `comments`
-    ADD CONSTRAINT `FK_solutions_TO_comments_1` FOREIGN KEY (
-                                                             `solution_id`
-        )
-        REFERENCES `solutions` (
-                                `id`
-            );
+    ADD CONSTRAINT `FK_solutions_TO_comments_1` FOREIGN KEY (`solution_id`)
+        REFERENCES `solutions` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `replies`
     ADD CONSTRAINT `FK_members_TO_replies_1` FOREIGN KEY (
@@ -324,28 +316,16 @@ ALTER TABLE `replies`
             );
 
 ALTER TABLE `replies`
-    ADD CONSTRAINT `FK_comments_TO_replies_1` FOREIGN KEY (
-                                                           `comment_id`
-        )
-        REFERENCES `comments` (
-                               `id`
-            );
+    ADD CONSTRAINT `FK_comments_TO_replies_1` FOREIGN KEY (`comment_id`)
+        REFERENCES `comments` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `solution_likes`
-    ADD CONSTRAINT `FK_members_TO_solution_likes_1` FOREIGN KEY (
-                                                                 `member_id`
-        )
-        REFERENCES `members` (
-                              `id`
-            );
+    ADD CONSTRAINT `FK_members_TO_solution_likes_1` FOREIGN KEY (`member_id`)
+        REFERENCES `members` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `solution_likes`
-    ADD CONSTRAINT `FK_solutions_TO_solution_likes_1` FOREIGN KEY (
-                                                                   `solution_id`
-        )
-        REFERENCES `solutions` (
-                                `id`
-            );
+    ADD CONSTRAINT `FK_solutions_TO_solution_likes_1` FOREIGN KEY (`solution_id`)
+        REFERENCES `solutions` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `comment_likes`
     ADD CONSTRAINT `FK_members_TO_comment_likes_1` FOREIGN KEY (
@@ -356,12 +336,8 @@ ALTER TABLE `comment_likes`
             );
 
 ALTER TABLE `comment_likes`
-    ADD CONSTRAINT `FK_comments_TO_comment_likes_1` FOREIGN KEY (
-                                                                 `comment_id`
-        )
-        REFERENCES `comments` (
-                               `id`
-            );
+    ADD CONSTRAINT `FK_comments_TO_comment_likes_1` FOREIGN KEY (`comment_id`)
+        REFERENCES `comments` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `reply_likes`
     ADD CONSTRAINT `FK_replies_TO_reply_likes_1` FOREIGN KEY (
@@ -398,7 +374,7 @@ ALTER TABLE `answers`
     ADD CONSTRAINT `FK_problems_TO_answers` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`id`);
 
 ALTER TABLE `solution_views`
-    ADD CONSTRAINT `FK_members_TO_solution_views` FOREIGN KEY (`member_id`) REFERENCES `members`(`id`);
+    ADD CONSTRAINT `FK_members_TO_solution_views` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `solution_views`
-    ADD CONSTRAINT `FK_solutions_TO_solution_views` FOREIGN KEY (`solution_id`) REFERENCES `solutions`(`id`);
+    ADD CONSTRAINT `FK_solutions_TO_solution_views` FOREIGN KEY (`solution_id`) REFERENCES `solutions` (`id`) ON DELETE CASCADE;
