@@ -130,12 +130,12 @@ CREATE TABLE IF NOT EXISTS `comments`
 
 CREATE TABLE IF NOT EXISTS `replies`
 (
-    `id`         BIGINT      NOT NULL AUTO_INCREMENT,
-    `member_id`  BIGINT      NOT NULL,
-    `comment_id` BIGINT      NOT NULL,
-    `content`    BIGINT      NOT NULL,
-    `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `id`         BIGINT       NOT NULL AUTO_INCREMENT,
+    `member_id`  BIGINT       NOT NULL,
+    `comment_id` BIGINT       NOT NULL,
+    `content`    VARCHAR(255) NOT NULL,
+    `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
