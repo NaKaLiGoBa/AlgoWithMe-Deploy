@@ -66,6 +66,11 @@ spec:
                 secretKeyRef:
                   key: apiKey
                   name: openai
+            - name: HTTP_PROXY
+              value: http://krmp-proxy.9rum.cc:3128
+            - name: HTTPS_PROXY
+              value: http://krmp-proxy.9rum.cc:3128
+
           ports:
             - containerPort: 8080
           resources:
