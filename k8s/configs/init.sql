@@ -84,13 +84,18 @@ CREATE TABLE IF NOT EXISTS `available_languages`
 
 CREATE TABLE IF NOT EXISTS `submits`
 (
-    `id`         BIGINT       NOT NULL AUTO_INCREMENT,
-    `problem_id` BIGINT       NOT NULL,
-    `member_id`  BIGINT       NOT NULL,
-    `code`       TEXT         NOT NULL,
-    `result`     VARCHAR(255) NOT NULL,
-    `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `id`               BIGINT       NOT NULL AUTO_INCREMENT,
+    `problem_id`       BIGINT       NOT NULL,
+    `member_id`        BIGINT       NOT NULL,
+    `code`             TEXT         NOT NULL,
+    `result`           VARCHAR(255) NOT NULL,
+    `language`         VARCHAR(255) NOT NULL,
+    `runtime`          VARCHAR(255) NOT NULL,
+    `memory`           VARCHAR(255) NOT NULL,
+    `time_complexity`  VARCHAR(255) NOT NULL,
+    `space_complexity` VARCHAR(255) NOT NULL,
+    `created_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
@@ -101,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `solutions`
     `problem_id` BIGINT       NOT NULL,
     `title`      VARCHAR(255) NOT NULL,
     `content`    TEXT         NOT NULL,
-    `view_count` BIGINT       NOT NULL,
     `created_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     `updated_at` DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
@@ -171,15 +175,15 @@ CREATE TABLE IF NOT EXISTS `reply_likes`
 
 CREATE TABLE IF NOT EXISTS `mini_quizzes`
 (
-    `id`               BIGINT       NOT NULL AUTO_INCREMENT,
-    `description`      VARCHAR(255) NOT NULL,
-    `explain`          VARCHAR(255) NOT NULL,
-    `answer`           TEXT         NOT NULL,
-    `type`             VARCHAR(255) NOT NULL,
-    `difficulty`       VARCHAR(255) NOT NULL,
-    `choiceOrInitials` VARCHAR(255) NOT NULL,
-    `created_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updated_at`       DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `id`                 BIGINT       NOT NULL AUTO_INCREMENT,
+    `description`        VARCHAR(255) NOT NULL,
+    `explain`            VARCHAR(255) NOT NULL,
+    `answer`             TEXT         NOT NULL,
+    `type`               VARCHAR(255) NOT NULL,
+    `difficulty`         VARCHAR(255) NOT NULL,
+    `choice_or_initials` VARCHAR(255) NOT NULL,
+    `created_at`         DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updated_at`         DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     PRIMARY KEY (id)
 );
 
