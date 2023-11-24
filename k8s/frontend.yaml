@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_fa38936b38dd
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_f0ce6e796e3f
 ---
 apiVersion: v1
 kind: Service

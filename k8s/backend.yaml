@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_69994fec1916
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_90cbc31929d8
           env:
             - name: JWT_SECRET_KEY
               valueFrom:
