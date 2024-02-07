@@ -6,10 +6,10 @@
 
 총 네개의 pod로 구성
 
-FrontEnd Pod : React + serve
-BackEnd Pod : Spring Boot
-Database Pod : MySQL Server
-Nginx Pod: Nginx Proxy Server
+- FrontEnd Pod : React + serve
+- BackEnd Pod : Spring Boot
+- Database Pod : MySQL Server
+- Nginx Pod: Nginx Proxy Server
 
 ## 배포 과정
 ![image](https://github.com/NaKaLiGoBa/AlgoWithMe-Deploy/assets/27201209/41f01fd2-9bf6-4e3a-a77a-79f36fd6a226)
